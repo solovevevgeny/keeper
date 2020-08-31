@@ -30,8 +30,20 @@ class OperationController extends Controller{
 
         $validatedData = $request->validate([
             'from'=>'requred',
-            'amount'=>'required'
+            'amount'=>'required|max:8'
         ]);
+        
+        // if OK
+        $operation = new Operation();
+        $operation->account_from = $request->account_from;
+        $operation->account_to = $request->account_to;
+        $operation->amount = $request->amount;
+        $operation->comment = $request->comment;
+        if ($operation->save()) {
+            return redirect (route('operations.index'));
+        }
+
+        
 
     }
 
