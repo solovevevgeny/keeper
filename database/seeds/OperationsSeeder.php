@@ -29,6 +29,7 @@ class OperationsSeeder extends Seeder
         $operation->account_from = 2;
         $operation->amount =  500;
         $operation->comment = "Бензин";
+        $operation->category_id = 2;
         $operation->save();
     }
 }
