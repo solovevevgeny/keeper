@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Operation;
+use App\Account;
 
 
 class OperationController extends Controller{
@@ -14,6 +16,24 @@ class OperationController extends Controller{
             'operations' => $operations
         ]);
     }
-
     
+    public function createForm(){
+
+        $accounts = Account::all();
+
+        return view("operations.createForm",[
+            'accounts' => $accounts
+        ]);
+    }
+
+
+    public function store(Request $request) {
+
+        $validatedData = $request->validate([
+            'from'=>'requred',
+            'comment'=>'required'
+        ]);
+
+    }
+
 }
