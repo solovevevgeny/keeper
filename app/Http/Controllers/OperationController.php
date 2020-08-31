@@ -8,7 +8,7 @@ use App\Operation;
 
 class OperationController extends Controller{
     public function index(){
-        $operations = Operation::all();
+        $operations = Operation::orderBy('created_at','desc')->get();
 
         return view("operations.index", [
             'operations' => $operations

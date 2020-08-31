@@ -5,15 +5,17 @@
 @section("content")
 
     @if ($operations !== null) 
-        <div class="operation-box">
+        <ul class="list-group">
         @foreach ($operations as $operation)
-            <div class="operation-item">
-                <h1>{{ $operation->amount }}</h1>
+            <li class="list-group-item">
+                <div class="operation-date">{{ $operation->created_at }}</div>
+                <h3>{{ $operation->amount }}</h3>
                 <div class="opertation-from">{{ $operation->account_from }}</div>
+                <div class="opertation-to">{{ $operation->account_to }}</div>
                 <span>{{ $operation->comment }}</span>
-            </div>
+            </li>
         @endforeach
-        </div>
+        </ul>
     @endif
     
 @endsection
