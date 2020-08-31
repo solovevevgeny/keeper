@@ -18,7 +18,7 @@ class CreateOperationsTable extends Migration
             $table->foreignId("account_from")->nullable();
             $table->foreignId("account_to")->nullable();
             $table->double("amount");
-            $table->strng("comment");
+            $table->string("comment");
             $table->timestamps();
         });
     }
