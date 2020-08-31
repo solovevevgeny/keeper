@@ -25,5 +25,10 @@ class OperationsSeeder extends Seeder
         $operation->comment = "Перевод со счета из Сбербанка Альфабанк";
         $operation->save();
 
+        $operation = new Operation();
+        $operation->account_from = 2;
+        $operation->amount =  500;
+        $operation->comment = "Бензин";
+        $operation->save();
     }
 }
