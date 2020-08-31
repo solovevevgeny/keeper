@@ -15,6 +15,10 @@ class CreateOperationsTable extends Migration
     {
         Schema::create('operations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("account_from")->nullable();
+            $table->foreignId("account_to")->nullable();
+            $table->double("amount");
+            $table->strng("comment");
             $table->timestamps();
         });
     }
