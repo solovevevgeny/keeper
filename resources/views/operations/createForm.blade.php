@@ -28,6 +28,15 @@
         </select>
     @endif
 
+    @if (!$categories !== null)
+        <select name="category_id">
+            @foreach ($categories as $category)
+                <option value="{{ $category->id }}"> {{ $category->title }} </option>
+            @endforeach
+        </select>
+    @endif
+
+
     <input type="text" name="amount" placeholder="Сумма">
     <input type="text" name="comment" placeholder="Комментарий">
 

@@ -6,23 +6,27 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Operation;
 use App\Account;
-
+use App\Category;
 
 class OperationController extends Controller{
     public function index(){
         $operations = Operation::orderBy('created_at','desc')->get();
 
+
         return view("operations.index", [
-            'operations' => $operations
+            'operations' => $operations,
+
         ]);
     }
     
     public function createForm(){
-
         $accounts = Account::all();
+        $categories = Category::all();
 
         return view("operations.createForm",[
-            'accounts' => $accounts
+            'accounts' => $accounts,
+            'categories' => $categories
+
         ]);
     }
 
@@ -39,6 +43,7 @@ class OperationController extends Controller{
         $operation->account_to = $request->account_to;
         $operation->amount = $request->amount;
         $operation->comment = $request->comment;
+        $operation->category_id = $request->category_id;
         if ($operation->save()) {
             return redirect (route('operations.index'));
         }
