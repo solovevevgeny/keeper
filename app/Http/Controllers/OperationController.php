@@ -43,8 +43,6 @@ class OperationController extends Controller{
             return redirect (route('operations.index'));
         }
 
-        
-
     }
 
 }
