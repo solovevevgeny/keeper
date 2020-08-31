@@ -26,12 +26,11 @@ class OperationController extends Controller{
         ]);
     }
 
-
     public function store(Request $request) {
 
         $validatedData = $request->validate([
             'from'=>'requred',
-            'comment'=>'required'
+            'amount'=>'required'
         ]);
 
     }

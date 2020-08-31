@@ -1,6 +1,9 @@
+@extends("layouts.main")
+
+
+@section ("content")
 <form METHOD="POST" action="{{ route('operations.store') }}">
     @csrf
-
 
     @if ($errors->any())
         @foreach($errors->all() as $error) 
@@ -31,3 +34,4 @@
     <button type="submit">Добавить операцию</button>
 
 </form>
+@endsection
