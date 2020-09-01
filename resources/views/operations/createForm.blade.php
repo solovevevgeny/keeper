@@ -31,6 +31,7 @@
 
     @if (!$categories !== null)
         <select name="category_id">
+        <option value=""></option>
             @foreach ($categories as $category)
                 <option value="{{ $category->id }}"> {{ $category->title }} </option>
             @endforeach
