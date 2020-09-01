@@ -10,8 +10,19 @@
             <li class="list-group-item">
                 <div class="operation-date">{{ $operation->created_at }}</div>
                 <h3>{{ $operation->amount }}</h3>
-                <div class="opertation-from">{{ $operation->account_from }}</div>
-                <div class="opertation-to">{{ $operation->account_to }}</div>
+
+                @if ($operation->accountFrom !== null) 
+                    <div class="opertation-from">{{ $operation->accountFrom->name }}</div>
+                @endif
+
+                @if ($operation->accountTo !== null) 
+                    <div class="opertation-to">{{ $operation->accountTo->name }}</div>
+                @endif
+
+                @if ($operation->category !== null) 
+                    <div class="opertation-to">{{ $operation->category->title }}</div>
+                @endif
+
                 <span>{{ $operation->comment }}</span>
             </li>
         @endforeach

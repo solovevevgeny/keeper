@@ -22,6 +22,7 @@
 
     @if ($accounts !== null) 
         <select name="account_to">
+        <option value=""></option>
         @foreach($accounts as $account)
             <option value="{{$account->id}}">{{ $account->name }}</option>
         @endforeach

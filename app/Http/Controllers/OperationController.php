@@ -10,7 +10,7 @@ use App\Category;
 
 class OperationController extends Controller{
     public function index(){
-        $operations = Operation::orderBy('created_at','desc')->get();
+        $operations = Operation::with('accountFrom','accountTo','category')->orderBy('created_at','desc')->get();
 
 
         return view("operations.index", [
