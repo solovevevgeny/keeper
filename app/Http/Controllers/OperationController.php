@@ -58,20 +58,28 @@ class OperationController extends Controller{
                 else {
                     DB::commit();
                 }
+        }elseif (($request->account_from !== null) & ($request->account_to == null)) {
+            $operationDescrement = Account::where('id', $request->account_from)
+                                 ->decrement('amount', $request->amount);
+
+        //    dd($request->amount);
 
         }
 
         // if OK
-        $operation = new Operation();
-        $operation->account_from = $request->account_from;
-        $operation->account_to = $request->account_to;
-        $operation->amount = $request->amount;
-        $operation->comment = $request->comment;
-        $operation->category_id = $request->category_id;
-        if ($operation->save()) {
-            return redirect (route('operations.index'));
-        }
-
+                $operation = new Operation();
+                $operation->account_from = $request->account_from;
+                $operation->account_to = $request->account_to;
+                $operation->amount = $request->amount;
+                $operation->comment = $request->comment;
+                $operation->category_id = $request->category_id;
+                if ($operation->save()) {
+                    return redirect (route('operations.index'));
+                }
     }
+
+
+
+
 
 }
