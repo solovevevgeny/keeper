@@ -10,8 +10,8 @@
             <li class="list-group-item">
 
             <div style="float:right">
-                <div style='font-size:2rem'>{{ number_format($operation->amount,0,'', ' ') }}</div>
-                <div class="operation-date">{{ date_format($operation->created_at, 'Y.m.d') }}</div>
+                <div style='text-align:right; font-size:2rem;font-weight:bold'>{{ number_format($operation->amount,0,'', ' ') }}</div>
+                <div style="text-align:right;" class="operation-date">{{ date_format($operation->created_at, 'Y.m.d') }}</div>
             </div>
 
             <div style="float:left">

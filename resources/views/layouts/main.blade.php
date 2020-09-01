@@ -14,8 +14,10 @@
 
 
 <body>
-<div class="container">
+<div style="width:800px">
+<div class="container-fluid">
     @yield("content")
+</div>
 </div>
 </body>
 
