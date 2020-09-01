@@ -74,7 +74,7 @@ class OperationController extends Controller{
                 $operation->comment = $request->comment;
                 $operation->category_id = $request->category_id;
                 if ($operation->save()) {
-                    return redirect (route('operations.index'));
+                    return redirect (route('mainscreen.index'));
                 }
     }
 
