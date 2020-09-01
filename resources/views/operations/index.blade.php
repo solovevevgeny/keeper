@@ -8,9 +8,13 @@
         <ul class="list-group">
         @foreach ($operations as $operation)
             <li class="list-group-item">
-                <div class="operation-date">{{ $operation->created_at }}</div>
-                <h3>{{ $operation->amount }}</h3>
 
+            <div style="float:right">
+                <div style='font-size:2rem'>{{ number_format($operation->amount,0,'', ' ') }}</div>
+                <div class="operation-date">{{ date_format($operation->created_at, 'Y.m.d') }}</div>
+            </div>
+
+            <div style="float:left">
                 @if ($operation->accountFrom !== null) 
                     <span class="opertation-from">  {{ $operation->accountFrom->name }} <i class="material-icons">arrow_right_alt</i> </span>
                 @endif
@@ -23,7 +27,8 @@
                     <span class="opertation-to">{{ $operation->category->title }}</span>
                 @endif
 
-                <span>{{ $operation->comment }}</span>
+                <div>{{ $operation->comment }}</div>
+            </div>
             </li>
         @endforeach
         </ul>
