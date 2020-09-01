@@ -12,15 +12,15 @@
                 <h3>{{ $operation->amount }}</h3>
 
                 @if ($operation->accountFrom !== null) 
-                    <div class="opertation-from">{{ $operation->accountFrom->name }}</div>
+                    <span class="opertation-from">  {{ $operation->accountFrom->name }} <i class="material-icons">arrow_right_alt</i> </span>
                 @endif
 
                 @if ($operation->accountTo !== null) 
-                    <div class="opertation-to">{{ $operation->accountTo->name }}</div>
+                    <span class="opertation-to">{{ $operation->accountTo->name }}</span>
                 @endif
 
                 @if ($operation->category !== null) 
-                    <div class="opertation-to">{{ $operation->category->title }}</div>
+                    <span class="opertation-to">{{ $operation->category->title }}</span>
                 @endif
 
                 <span>{{ $operation->comment }}</span>
