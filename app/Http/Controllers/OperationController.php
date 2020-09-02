@@ -29,14 +29,70 @@ class OperationController extends Controller{
         ]);
     }
 
+
+    private function sum($accountTo, $amount, $category, $comment){
+        dd($accountTo, $amount, $category, $comment);
+    }
+
+    private function sup($accountFrom, $amount, $category, $comment){
+        dd($accountFrom, $amount, $category, $comment);
+    }
+
+    private function move($accountFrom, $accountTo, $amount, $comment = null){
+        dd($accountFrom, $accountTo, $amount, $comment = null);
+    }
+
+
+
     public function store(Request $request) {
 
-        $validatedData = $request->validate([
-            'from'=>'requred',
-            'amount'=>'required|max:8'
-        ]);
+
+        $operationType = $request->type;
+
+        $accountFrom = $request->accountfrom;
+        $accountTo   = $request->accountto;
+        $amount      = $request ->amount;
+        $comment     = $request->comment;
+        $category    = $request->category_id;
+
+        switch($operationType){
+            case "sup":
+                $validatedData = $request->validate([
+                    'accountfrom'=>'required',
+                    'amount'=>'required|max:8'
+                ]);
+
+                $this->sup($accountFrom, $amount, $category, $comment);
+                break;
+
+            case "move":
+                $validatedData = $request->validate([
+                    'accountfrom'=>'required',
+                    'accountto'=>'required',
+                    'amount'=>'required'
+                ]);
+
+                $this->move($accountFrom, $accountTo, $amount, $comment);
+                break;
+
+            case "sum":
+                $validatedData = $request->validate([
+                    'accountto'=>'required',
+                    'amount'=>'required'
+                ]);
+
+                $this->sum($accountTo, $amount, $category, $comment);
+                break;
+        }
+
+
+
+
+  
         
 
+
+/*
         // moving transaction
         if (($request->account_from !==null) & ($request->account_to !== null)) {
 
@@ -76,6 +132,9 @@ class OperationController extends Controller{
                 if ($operation->save()) {
                     return redirect (route('mainscreen.index'));
                 }
+*/
+
+
     }
 
 
