@@ -14,10 +14,10 @@
 <form method="POST" action="{{ route('operations.store') }}">
     @csrf
     <div class="form-group">
-
     <label for="input-account-from">Отправитель</label>
     @if ($accounts !== null) 
         <select name="account_from" id="input-account-from" class="form-control">
+        <option value=""></option>
         @foreach($accounts as $account)
             <option value="{{$account->id}}">{{ $account->name }}</option>
         @endforeach
@@ -48,8 +48,6 @@
     <input type="text" name="comment" placeholder="Комментарий" class="form-control">
 
     <button class="btn btn-success" type="submit">Добавить операцию</button>
-
-
 
     </div>
 </form>
