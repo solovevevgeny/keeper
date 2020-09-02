@@ -2,18 +2,22 @@
 
 
 @section ("content")
-<form METHOD="POST" action="{{ route('operations.store') }}">
+
+
+@if ($errors->any())
+    @foreach($errors->all() as $error) 
+        <div class="alert alert-danger">{{ $error  }}</div>
+    @endforeach
+@endif
+
+
+<form method="POST" action="{{ route('operations.store') }}">
     @csrf
+    <div class="form-group">
 
-    @if ($errors->any())
-        @foreach($errors->all() as $error) 
-            <div class="alert alert-danger">{{ $error  }}</div>
-        @endforeach
-    @endif
-
-
+    <label for="input-account-from">Отправитель</label>
     @if ($accounts !== null) 
-        <select name="account_from">
+        <select name="account_from" id="input-account-from" class="form-control">
         @foreach($accounts as $account)
             <option value="{{$account->id}}">{{ $account->name }}</option>
         @endforeach
@@ -21,7 +25,8 @@
     @endif
 
     @if ($accounts !== null) 
-        <select name="account_to">
+    <label for="input-account-to">Получатель</label>
+        <select name="account_to" id="input-account-to" class="form-control">
         <option value=""></option>
         @foreach($accounts as $account)
             <option value="{{$account->id}}">{{ $account->name }}</option>
@@ -30,7 +35,8 @@
     @endif
 
     @if (!$categories !== null)
-        <select name="category_id">
+        <label for="category_id">Категория</label>
+        <select name="category_id" class="form-control" id="category_id">
         <option value=""></option>
             @foreach ($categories as $category)
                 <option value="{{ $category->id }}"> {{ $category->title }} </option>
@@ -38,11 +44,13 @@
         </select>
     @endif
 
+    <input type="text" name="amount" placeholder="Сумма" class="form-control">
+    <input type="text" name="comment" placeholder="Комментарий" class="form-control">
 
-    <input type="text" name="amount" placeholder="Сумма">
-    <input type="text" name="comment" placeholder="Комментарий">
+    <button class="btn btn-success" type="submit">Добавить операцию</button>
 
-    <button type="submit">Добавить операцию</button>
 
+
+    </div>
 </form>
 @endsection
