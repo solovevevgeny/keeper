@@ -60,7 +60,7 @@ class OperationController extends Controller{
                 }
         }elseif (($request->account_from !== null) & ($request->account_to == null)) {
             $operationDescrement = Account::where('id', $request->account_from)
-                                 ->decrement('amount', $request->amount);
+                                  ->decrement('amount', $request->amount);
 
         //    dd($request->amount);
 
