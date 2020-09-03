@@ -12,7 +12,7 @@ class MainScreenController extends Controller{
     // operations
 
     public function index(){
-        $accounts = Account::all();
+        $accounts = Account::with('currency')->get();
         $operations = Operation::with('accountFrom','accountTo','category')->orderBy('created_at','desc')->limit(5)->get();
 
         return view("mainscreen.index", [
