@@ -15,12 +15,18 @@
     @csrf
     <div class="form-group">
 
-    <select name="type" class="form-control">
-        <option value="sup">Расход</option>    
-        <option value="move">Перевод</option>
-        <option value="sum">Доход</option>
-    </select>
+    <div>
+        <input id="radio-sup" type="radio" name="type" value="sup" checked>
+        <label for="radio-sup">Расход</label>
 
+        <input id="radio-move" type="radio" name="type" value="move">
+        <label for="radio-move">Перевод</label>
+
+        <input id="radio-add" type="radio" name="type" value="add">
+        <label for="radio-add">Доход</label>
+
+
+    </div>
 
     <label for="input-account-from">Отправитель</label>
     @if ($accounts !== null) 
