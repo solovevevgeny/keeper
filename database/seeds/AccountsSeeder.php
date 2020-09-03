@@ -13,8 +13,8 @@ class AccountsSeeder extends Seeder
     public function run(){
         $Account = new Account();
         $Account->name = "Карта Сбербанка";
-        $Account->start_amount = 0;
-        $Account->amount = 0;
+        $Account->start_amount = 10000;
+        $Account->amount = 10000;
         $Account->save();
 
         $Account = new Account();
@@ -24,14 +24,20 @@ class AccountsSeeder extends Seeder
         $Account->save();
 
         $Account = new Account();
-        $Account->name = "Карта ВТБ";
-        $Account->start_amount = 0;
-        $Account->amount = 0;
+        $Account->name = "Карта Санкт-Петербурга";
+        $Account->start_amount = 1399.53;
+        $Account->amount = 1399.53;
         $Account->save();
 
         $Account = new Account();
-        $Account->name = "Депозит Альфабанка";
-        $Account->start_amount = 10000;
+        $Account->name = "Сейф";
+        $Account->start_amount = 0;
+        $Account->amount = $Account->start_amount;
+        $Account->save();
+
+        $Account = new Account();
+        $Account->name = "Кошелек";
+        $Account->start_amount = 0;
         $Account->amount = $Account->start_amount;
         $Account->save();
     }
