@@ -9,22 +9,26 @@
 <!-- /BOOTSTRAP IO -->
 
 </head>
-<header>
-    @include('layouts.header')
-</header>
 
 
 
 <body>
-<div style="width:800px">
-<div class="container-fluid">
+<div >
+<div class="container">
+    <header>
+        @include('layouts.header')
+    </header>
+
     @yield("content")
+
+    <footer>
+    @include('layouts.footer')
+    </footer>
+
+
 </div>
 </div>
 </body>
 
 
-<footer>
-@include('layouts.footer')
-</footer>
 </html>
