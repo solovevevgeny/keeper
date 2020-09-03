@@ -3,14 +3,15 @@
 use Illuminate\Database\Seeder;
 use App\Currency;
 
-class CurrencySeeder extends Seeder
+class CurrenciesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run(){
+    public function run()
+    {
         $currency = new Currency();
         $currency->code = 810;
         $currency->sufix = ("RUR");
@@ -25,6 +26,5 @@ class CurrencySeeder extends Seeder
         $currency->code = 978;
         $currency->sufix = ("EUR");
         $currency->save();
-
     }
 }

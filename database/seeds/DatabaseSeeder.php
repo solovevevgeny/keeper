@@ -7,6 +7,6 @@ class DatabaseSeeder extends Seeder{
         $this->call(OperationsSeeder::class);
         $this->call(AccountsSeeder::class);
         $this->call(CategoriesSeeder::class);
-        $this->call(CurrencySeeder::class);
+        $this->call(CurrenciesSeeder::class);
     }
 }
