@@ -33,7 +33,7 @@
 
 
     <div class="operationsGraph">
-    <canvas id="myChart" width="400" height="400"></canvas>
+        @include("chars.sample")
     </div>
 
     </div>
