@@ -16,7 +16,7 @@
 
             <div style="float:left">
                 @if ($operation->accountFrom !== null) 
-                    <span class="opertation-from">  {{ $operation->accountFrom->name }} <i class="material-icons">arrow_right_alt</i> </span>
+                    <span class="opertation-from">  {{ $operation->accountFrom->name }} </span>
                 @endif
 
                 @if ($operation->accountTo !== null) 

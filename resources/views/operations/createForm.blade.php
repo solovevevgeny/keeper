@@ -13,9 +13,10 @@
 
 <form method="POST" action="{{ route('operations.store') }}">
     @csrf
-    <div class="form-group">
 
-    <div>
+
+    <div >
+
         <input id="radio-sup" type="radio" name="type" value="sup" checked>
         <label for="radio-sup">Расход</label>
 
@@ -24,9 +25,11 @@
 
         <input id="radio-add" type="radio" name="type" value="add">
         <label for="radio-add">Доход</label>
-
-
     </div>
+
+
+    <div class="form-group">
+
 
     <label for="input-account-from">Отправитель</label>
     @if ($accounts !== null) 

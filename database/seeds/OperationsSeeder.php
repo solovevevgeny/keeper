@@ -12,6 +12,7 @@ class OperationsSeeder extends Seeder
      */
     public function run(){
         $operation = new Operation();
+        $operation->type = "move";
         $operation->account_from = 1;
         $operation->account_to   = 2;
         $operation->amount =  1002;
@@ -20,6 +21,7 @@ class OperationsSeeder extends Seeder
 
         $operation = new Operation();
         $operation->account_from = 2;
+        $operation->type = "move";
         $operation->account_to   = 1;
         $operation->amount =  1002;
         $operation->comment = "Перевод со счета из Сбербанка Альфабанк";
@@ -27,6 +29,7 @@ class OperationsSeeder extends Seeder
 
         $operation = new Operation();
         $operation->account_from = 2;
+        $operation->type = "sup";
         $operation->amount =  500;
         $operation->comment = "Бензин";
         $operation->category_id = 2;

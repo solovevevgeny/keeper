@@ -17,7 +17,6 @@ class OperationController extends Controller{
             'operations' => $operations,
         ]);
     }
-    
     public function createForm(){
         $accounts = Account::all();
         $categories = Category::all();
@@ -25,28 +24,59 @@ class OperationController extends Controller{
         return view("operations.createForm",[
             'accounts' => $accounts,
             'categories' => $categories
-
         ]);
     }
-
-
-    private function sum($accountTo, $amount, $category, $comment){
-        dd($accountTo, $amount, $category, $comment);
+    private function add($accountTo, $amount, $category, $comment){
+        $result = Account::where('id', $accountTo )
+                  ->increment("amount", $amount);
+        if ($result) {
+            $this->addOperation("sum", null, $accountTo, $category, $amount, $comment);
+        }
     }
-
     private function sup($accountFrom, $amount, $category, $comment){
-        dd($accountFrom, $amount, $category, $comment);
+        $result = Account::where('id', $accountFrom )
+                  ->decrement("amount", $amount);
+        if ($result) {
+            $this->addOperation("sup", $accountFrom, null, $category, $amount, $comment);
+        }
     }
+
 
     private function move($accountFrom, $accountTo, $amount, $comment = null){
-        dd($accountFrom, $accountTo, $amount, $comment = null);
-    }
 
+       // dd($accountFrom, $accountTo, $amount, $comment);
+
+        DB::beginTransaction();
+         
+            $resFrom = Account::where('id',$accountFrom)
+                ->decrement('amount',$amount);
+
+            $resTo = Account::where('id',$accountTo)
+                ->increment('amount',$amount);
+
+            if ((!$resFrom) || (!$resTo)) {
+                DB::rollback();
+            }
+            else {
+                DB::commit();
+            }
+            $this->addOperation("move", $accountFrom, $accountTo, null, $amount, $comment);
+
+    }
+    
+    private function addOperation($type,$accountFrom = null , $accountTo = null, $category =null, $amount, $comment = null){
+        $operation = new Operation();
+        $operation->type = $type;
+        $operation->account_from = $accountFrom;
+        $operation->account_to = $accountTo;
+        $operation->amount = $amount;
+        $operation->comment = $comment;
+        $operation->category_id = $category;
+        $operation->save();
+    }
 
 
     public function store(Request $request) {
-
-
         $operationType = $request->type;
 
         $accountFrom = $request->accountfrom;
@@ -63,6 +93,7 @@ class OperationController extends Controller{
                 ]);
 
                 $this->sup($accountFrom, $amount, $category, $comment);
+                return redirect()->route('mainscreen.index');
                 break;
 
             case "move":
@@ -73,15 +104,18 @@ class OperationController extends Controller{
                 ]);
 
                 $this->move($accountFrom, $accountTo, $amount, $comment);
+                return redirect()->route('mainscreen.index');
+
                 break;
 
-            case "sum":
+            case "add":
                 $validatedData = $request->validate([
                     'accountto'=>'required',
                     'amount'=>'required'
                 ]);
 
-                $this->sum($accountTo, $amount, $category, $comment);
+                $this->add($accountTo, $amount, $category, $comment);
+                return redirect()->route('mainscreen.index');
                 break;
         }
 

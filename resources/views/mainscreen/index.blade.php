@@ -16,7 +16,9 @@
         <h3>Операции</h3>    
         @if($operations !== null)
             @foreach($operations as $operation)
-                <div style='float:left'> {{ $operation->accountFrom->name }}</div>
+                @if ($operation->accountFrom !== null)
+                    <div style='float:left'> {{ $operation->accountFrom->name }}</div>
+                @endif
                 <div style='float:right'>{{ number_format($operation->amount, 0, ' ', ' ') }}</div><br />
             @endforeach
         @endif

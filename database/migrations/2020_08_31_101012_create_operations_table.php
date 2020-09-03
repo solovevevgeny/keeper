@@ -15,6 +15,7 @@ class CreateOperationsTable extends Migration
     {
         Schema::create('operations', function (Blueprint $table) {
             $table->id();
+            $table->string("type")->nullable();
             $table->foreignId("account_from")->nullable();
             $table->foreignId("account_to")->nullable();
             $table->foreignId("category_id")->nullable();
